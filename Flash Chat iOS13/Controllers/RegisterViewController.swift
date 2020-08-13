@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SnapKit
 
 class RegisterViewController: UIViewController {
 
@@ -18,22 +19,27 @@ class RegisterViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
 
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
+    
+    let warningMessage = UILabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let warningMessage = UILabel()
         warningMessage.translatesAutoresizingMaskIntoConstraints = false
         warningMessage.textAlignment = .center
-        warningMessage.backgroundColor = .lightGray
-
+        warningMessage.textColor = .red
+        warningMessage.numberOfLines = 1
 
         view.addSubview(warningMessage)
-        
+        warningMessage.snp.makeConstraints {
+            $0.width.equalTo(330)
+            $0.height.centerY.equalTo(100)
+            $0.leftMargin.equalToSuperview().offset(5)
+            $0.bottom.centerY.equalToSuperview()
+        }
     }
 
 

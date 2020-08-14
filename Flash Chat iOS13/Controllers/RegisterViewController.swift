@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
+import SnapKit
 
 class RegisterViewController: UIViewController {
 
@@ -19,25 +21,29 @@ class RegisterViewController: UIViewController {
     }
 
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    required init?(coder aDecoder: NSCoder) {
+       super.init(coder: aDecoder)
     }
 
+    let warningMessage = UILabel()
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let warningMessage = UILabel()
         warningMessage.translatesAutoresizingMaskIntoConstraints = false
         warningMessage.textAlignment = .center
-        warningMessage.backgroundColor = .lightGray
-
+        warningMessage.textColor = .red
+        warningMessage.numberOfLines = 0
 
         view.addSubview(warningMessage)
-        
+
+        warningMessage.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(50)
+            $0.leading.equalToSuperview().offset(10)
+            $0.trailing.equalToSuperview().offset(-10)
+            $0.width.equalTo(300)
+            $0.height.equalTo(100)
+        }
     }
-
-
-
 
     @IBAction func registerPressed(_ sender: UIButton) {
 
